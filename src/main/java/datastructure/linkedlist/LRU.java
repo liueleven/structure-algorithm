@@ -58,7 +58,7 @@ public class LRU<T> {
                 deleteEndNode();
             }
             insertToHead(data);
-            length ++;
+
         }
     }
 
@@ -73,7 +73,7 @@ public class LRU<T> {
         }
 
         // 倒数第二个结点
-        while (ptr.getNext().getNext().data != null) {
+        while (ptr.getNext().getNext() != null && ptr.getNext().getNext().getData() != null) {
             ptr = ptr.getNext();
         }
 
@@ -99,8 +99,6 @@ public class LRU<T> {
     public Node findPreNode(T data) {
 
         Node node = headNode;
-        System.out.println("node: " + node.getData());
-        System.out.println("headNode: " + headNode.getData());
         while (node.next != null) {
             if(data.equals(node.next.data)) {
 
@@ -132,7 +130,7 @@ public class LRU<T> {
         Node<T> next = headNode.getNext();
         headNode.setNext(new Node<T>(headNode.getData(),next));
         headNode.setData(data);
-
+        length ++;
     }
 
 
@@ -148,9 +146,9 @@ public class LRU<T> {
         lru.add(2);
         lru.add(3);
         lru.add(4);
-//        lru.add(2);
-//        lru.add(5);
-//        lru.add(1);
+        lru.add(2);
+        lru.add(5);
+        lru.add(1);
         lru.printAll();
 
 
