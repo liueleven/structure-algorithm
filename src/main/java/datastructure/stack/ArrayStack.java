@@ -1,6 +1,6 @@
 package datastructure.stack;
 
-import java.util.Arrays;
+
 
 /**
  * @description: 基于数组的栈
@@ -30,6 +30,12 @@ public class ArrayStack<T> {
         this.capacity = capacity;
     }
 
+    public ArrayStack(T[] stacks) {
+        this.stacks = stacks;
+        this.count = 0;
+        this.capacity = stacks.length;
+    }
+
     public void printall() {
         if(this.stacks == null) {
             return;
@@ -47,9 +53,14 @@ public class ArrayStack<T> {
         count ++;
     }
 
-    public void pop() {
+    public T pop() {
+        if(count == 0) {
+            return null;
+        }
+        T data = this.stacks[count-1];
         this.stacks[count-1] = null;
         count --;
+        return data;
     }
 
     public static void main(String[] args) {
@@ -70,4 +81,7 @@ public class ArrayStack<T> {
         stack.printall();
     }
 
+    public int getCount() {
+        return count;
+    }
 }
