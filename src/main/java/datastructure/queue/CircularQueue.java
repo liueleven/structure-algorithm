@@ -2,7 +2,8 @@ package datastructure.queue;
 
 
 /**
- * @description: 循环队列,因为环形结构，会浪费一个存储空间
+ * @description: 循环队列,因为环形结构，要区分队满和队空的情况，会浪费一个存储空间
+ *                  但是可以增加一个flag来避免，但是flag也也会占用一个存储空间
  * @date: 2019-02-27 22:50
  * @author: 十一
  */
