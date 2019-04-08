@@ -1,8 +1,6 @@
 package datastructure.binary;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @description: 使用栈非递归来遍历二叉树
@@ -23,19 +21,29 @@ public class StackTraversal {
         stackTraversal.createBinTree();
 
         // 前序遍历
-        System.out.println("--------前序遍历---------");
-        List<String> preTraversal = stackTraversal.preTraversal(stackTraversal.list.get(0));
-        System.out.println(preTraversal.toString());
+//        System.out.println("--------前序遍历---------");
+//        List<String> preTraversal = stackTraversal.preTraversal(stackTraversal.list.get(0));
+//        System.out.println(preTraversal.toString());
+//
+////         后序遍历
+//        System.out.println("--------后序遍历---------");
+//        List<String> backTraversal = stackTraversal.backTraversal(stackTraversal.list.get(0));
+//        System.out.println(backTraversal.toString());
+//
+//        // 中序遍历
+//        System.out.println("--------中序遍历---------");
+//        List<String> midTraversal = stackTraversal.midTraversal(stackTraversal.list.get(0));
+//        System.out.println(midTraversal.toString());
 
-//         后序遍历
-        System.out.println("--------后序遍历---------");
-        List<String> backTraversal = stackTraversal.backTraversal(stackTraversal.list.get(0));
-        System.out.println(backTraversal.toString());
+        // 层序遍历
+        System.out.println("--------层序遍历---------");
+        List<List<String>> levelTraversal = stackTraversal.levelTraversal(stackTraversal.list.get(0));
+        System.out.println(levelTraversal.toString());
 
-        // 中序遍历
-        System.out.println("--------中序遍历---------");
-        List<String> midTraversal = stackTraversal.midTraversal(stackTraversal.list.get(0));
-        System.out.println(midTraversal.toString());
+        // 层序遍历
+        System.out.println("--------层序遍历2---------");
+        List<String> levelTraversal2 = stackTraversal.levelTraversal2(stackTraversal.list.get(0));
+        System.out.println(levelTraversal2.toString());
     }
 
 
@@ -110,6 +118,76 @@ public class StackTraversal {
         return resultList;
     }
 
+    /**
+     * 使用队列结构
+     * @param root
+     * @return
+     */
+    public List<String> levelTraversal2(Node root) {
+        if (root == null) {
+            return new ArrayList<>(0);
+        }
+        Queue<Node> queue = new LinkedList<>();
+        List<String> list = new ArrayList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            Node curNode = queue.poll();
+            list.add(curNode.data);
+            if(curNode.left != null) {
+                queue.offer(curNode.left);
+            }
+            if(curNode.right != null) {
+                queue.offer(curNode.right);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 层序遍历，从上到下，从左到右，使用队列，先进先出
+     * @param root
+     * @return
+     */
+    public List<List<String>> levelTraversal(Node root) {
+        if (root == null) {
+            return new ArrayList<>(0);
+        }
+
+        List<List<String>> result = new ArrayList<>();
+
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.offer(root);
+
+        Queue<Node> curLevelNodes = new LinkedList<Node>();
+
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+            curLevelNodes.offer(node);
+
+            if (queue.isEmpty()) {
+                List<String> list = new ArrayList<>(curLevelNodes.size());
+                while (!curLevelNodes.isEmpty()) {
+                    Node curNode = curLevelNodes.poll();
+                    list.add(curNode.data);
+
+                    if (curNode.left != null) {
+                        queue.offer(curNode.left);
+                    }
+
+                    if (curNode.right != null) {
+                        queue.offer(curNode.right);
+                    }
+
+                }
+                result.add(list);
+            }
+        }
+
+
+        return result;
+    }
+
+
 
 
     /**
@@ -132,7 +210,7 @@ public class StackTraversal {
 
     }
 
-    private static class Node {
+    private  class Node {
         private String data;
         private Node left;
         private Node right;
