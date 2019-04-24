@@ -3,7 +3,7 @@ package datastructure.bintree;
 import java.util.List;
 
 /**
- * @description: 二叉树的三种遍历
+ * @description: 二叉树
  * @date: 2019-04-06 16:52
  * @author: 十一
  */
