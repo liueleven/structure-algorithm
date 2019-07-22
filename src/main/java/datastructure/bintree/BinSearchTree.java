@@ -37,7 +37,7 @@ public class BinSearchTree {
         BinSearchTree bst = new BinSearchTree();
         bst.tree = root;
 
-//        Node node = bst.find(9);
+//        Node node = bst.isExist(9);
 //        System.out.println(node);
         List<Integer> list = bst.levelTraversal(bst.tree);
         System.out.println(list.toString());
