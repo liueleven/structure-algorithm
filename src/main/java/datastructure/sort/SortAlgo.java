@@ -96,7 +96,7 @@ public class SortAlgo {
     }
 
     /**
-     * 选择排序的思想和插入差不多，也是要分成已排序和为排序，每次从未排序中选出最小值放入有序中的末尾
+     * 选择排序的思想和插入差不多，也是要分成已排序和未排序，每次从未排序中选出最小值放入有序中的末尾
      * @param array
      */
     public static void select(int[] array) {

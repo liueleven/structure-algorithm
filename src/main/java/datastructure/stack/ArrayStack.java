@@ -1,6 +1,7 @@
 package datastructure.stack;
 
 
+import java.util.Stack;
 
 /**
  * @description: 基于数组的栈
@@ -60,6 +61,14 @@ public class ArrayStack<T> {
         T data = this.stacks[count-1];
         this.stacks[count-1] = null;
         count --;
+        return data;
+    }
+
+    public T peek() {
+        if(count == 0) {
+            return null;
+        }
+        T data = this.stacks[count-1];
         return data;
     }
 

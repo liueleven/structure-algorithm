@@ -28,7 +28,6 @@ public class MergeSortAlgo {
      */
     public static void  mergeSort(int[] a,int n) {
         subMergeSort(a,0,n);
-
     }
 
     /**
@@ -45,9 +44,9 @@ public class MergeSortAlgo {
 
         // 这里不要使用(m+n)/2,防止超过相加后超过int的最大值
         int q = p + (r-p) / 2;
-        System.out.println("--- q1: " + q);
+//        System.out.println("--- q1: " + q);
         subMergeSort(arr,p,q);
-        System.out.println("--- q2: " + q);
+//        System.out.println("--- q2: " + q);
         subMergeSort(arr,q+1,r);
         merge(arr,p,q,r);
 

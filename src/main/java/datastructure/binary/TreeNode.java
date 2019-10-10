@@ -1,6 +1,8 @@
 package datastructure.binary;
 
 
+import com.sun.javafx.scene.NodeHelper;
+
 import java.util.*;
 
 /**
@@ -40,16 +42,18 @@ public class TreeNode {
 //        tr.prePrint(nodeA);
 
         // 后序非递归,栈，左-右-根
-        List<String> list = tr.backTraversal(nodeA);
-        System.out.println(list.toString());
+//        List<String> list = tr.backTraversal(nodeA);
+//        System.out.println(list.toString());
 //         后序递归
 //        tr.backPrint(nodeA);
 
 //        // 中序非递归
 //        List<String> list = tr.midTraversal(nodeA);
 //        System.out.println(list.toString());
-////         中序递归
+//         中序递归
 //        tr.midPrint(nodeA);
+
+        tr.levelTraversal(nodeA);
 
 
     }
@@ -162,11 +166,6 @@ public class TreeNode {
         while (!stack.isEmpty()) {
             Node node = stack.pop();
 
-
-
-
-
-
             if(node.right != null) {
                 stack.push(node.right);
 
@@ -174,23 +173,11 @@ public class TreeNode {
 //                list.add(node.data);
             }
 
-
             if(node.left != null) {
                 stack.push(node.left);
             }else {
                 list.add(node.data);
             }
-//
-//            if(node.right != null) {
-//                stack.push(node.right);
-//            }else {
-//                list.add(node.data);
-//            }
-//            if(node.left != null) {
-//                stack.push(node.left);
-//            }else {
-//                list.add(node.data);
-//            }
         }
 
         return list;
@@ -244,6 +231,28 @@ public class TreeNode {
         return list;
     }
 
+    /**
+     * 非递归，层序遍历，上->下，左->右
+     * @param root
+     */
+    public void levelTraversal(Node root) {
+        if (root == null) {
+            return;
+        }
+        LinkedList<Node> queue = new LinkedList<Node>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node curr = queue.remove();
+            System.out.print(curr.data + " ");
+            if (curr.left != null) {
+                queue.add(curr.left);
+            }
+            if (curr.right != null) {
+                queue.add(curr.right);
+            }
+
+        }
+    }
 
 
 
@@ -252,7 +261,8 @@ public class TreeNode {
 
 
 
-    public static class Node {
+
+    static class Node {
         private String data;
         private Node left;
         private Node right;

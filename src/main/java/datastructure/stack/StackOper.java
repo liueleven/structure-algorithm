@@ -28,7 +28,7 @@ public class StackOper {
 
         ArrayStack<Double> stackNums = new ArrayStack<Double>(new Double[20],0,20);
         ArrayStack<String> stackSymbol = new ArrayStack<String>(new String[20],0,20);
-        String express = "3+5*8-6";
+        String express = "3+5*8-6/2";
 //        String express = "3+5*8-6-8/2";
         String[] split = express.split("");
         for(int i=0; i<split.length; i++) {
