@@ -20,8 +20,9 @@ public class _05SymbolMatch {
         String arr1 = "([<>])";
         String arr2 = "][<>";
         String arr3 = "()[]<>";
-//        boolean r = m1(arr3,map);
-        boolean r = m2(arr2,map);
+        String arr4 = "[";
+        boolean r = m1(arr4,map);
+//        boolean r = m2(arr4,map);
         System.out.println("是否匹配：" + r);
     }
     /**
@@ -30,8 +31,10 @@ public class _05SymbolMatch {
      * 空间复杂度：O(n),每个元素都要入栈
      *
      */
-    private static boolean m1(String arrStr,Map<String,String> map) {
-        String[] arr = arrStr.split("");
+    private static boolean m1(String s,Map<String,String> map) {
+        if (s == null) return false;
+        if (s.trim().length() == 0) return true;
+        String[] arr = s.split("");
         Stack<String> stack = new Stack<>();
         for (int i = 0; i < arr.length; i++) {
             if (map.get(arr[i]) != null) {
@@ -53,12 +56,14 @@ public class _05SymbolMatch {
      * 时间复杂度：O(n^2/2)
      *
      */
-    private static boolean m2(String arrStr,Map<String,String> map) {
-        System.out.println(arrStr);
-        while (arrStr.length() > 0) {
-            int l1 = arrStr.length();
-            arrStr = arrStr.replace("<>","").replace("()","").replace("[]","");
-            int l2 = arrStr.length();
+    private static boolean m2(String s,Map<String,String> map) {
+        if (s == null) return false;
+        if (s.trim().length() == 0) return true;
+        System.out.println(s);
+        while (s.length() > 0) {
+            int l1 = s.length();
+            s = s.replace("<>","").replace("()","").replace("[]","");
+            int l2 = s.length();
             if (l1 == l2) {
                 return false;
             }

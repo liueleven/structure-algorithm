@@ -12,8 +12,8 @@ public class _04DetectCycle {
 
 
     public static void main(String[] args) {
-        Node node = Node.getcycleNode();
-//        Node node = Node.getSortNode(6);
+//        Node node = Node.getcycleNode();
+        Node node = Node.getSortNode(2);
 //        boolean r = m1(node);
 //        boolean r = m2(node);
         boolean r = m3(node);
@@ -58,7 +58,7 @@ public class _04DetectCycle {
         Node slow = node;
         while (fast != null && fast.next != null && slow != null) {
 
-            Node f = fast.next.next;
+            Node f = fast.next;
             Node s = slow;
             System.out.println(f.data + "--" + s.data);
             if (f.data.equals(s.data)) {
