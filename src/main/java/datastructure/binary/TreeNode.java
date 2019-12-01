@@ -4,9 +4,10 @@ package datastructure.binary;
 import com.sun.javafx.scene.NodeHelper;
 
 import java.util.*;
+import java.util.function.Function;
 
 /**
- * @description: 一定要写注释啊
+ * @description: 前序、中序、后序，指的是根节点出现的位置
  * @date: 2019-04-06 19:37
  * @author: 十一
  */
@@ -39,7 +40,7 @@ public class TreeNode {
 //        List<String> queueList = tr.preQueueTraversal(nodeA);
 //        System.out.println(queueList.toString());
         // 前序递归
-//        tr.prePrint(nodeA);
+        tr.prePrint(nodeA);
 
         // 后序非递归,栈，左-右-根
 //        List<String> list = tr.backTraversal(nodeA);
@@ -53,7 +54,8 @@ public class TreeNode {
 //         中序递归
 //        tr.midPrint(nodeA);
 
-        tr.levelTraversal(nodeA);
+        // 层序遍历
+//        tr.levelTraversal(nodeA);
 
 
     }
@@ -165,18 +167,14 @@ public class TreeNode {
 
         while (!stack.isEmpty()) {
             Node node = stack.pop();
-
+            list.add(node.data);
             if(node.right != null) {
                 stack.push(node.right);
 
-            }else {
-//                list.add(node.data);
             }
 
             if(node.left != null) {
                 stack.push(node.left);
-            }else {
-                list.add(node.data);
             }
         }
 
