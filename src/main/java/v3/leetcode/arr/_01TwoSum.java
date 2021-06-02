@@ -73,6 +73,7 @@ public class _01TwoSum {
      * @return
      */
     public static int[] m3(int[] nums, int target) {
+        // 这个值一定要比数组最大的值要大
         int n = 2951;
         int[] map = new int[n];
         int max = n - 1;
