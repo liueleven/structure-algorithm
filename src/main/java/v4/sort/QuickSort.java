@@ -21,10 +21,86 @@ public class QuickSort {
 //        int[] arr = {9,3,2,1,10,6,8,7,5,4};
         int[] arr = {1,88,23,4,52,3,7};
         System.out.println(Arrays.toString(arr));
-        qs(arr,0,arr.length-1);
+        quickSort2(arr, 0, arr.length - 1);
+//        qs2(arr,0,arr.length-1);
+//        qs(arr,0,arr.length-1);
 //        quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
+
+    /**
+     * 有问题
+     * @param arr
+     * @param left
+     * @param right
+     */
+    private static void quickSort2(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int emptyIndex = left;
+        int key = arr[emptyIndex];
+        int i = left;
+        int j = right;
+        while (i < j) {
+
+            while (i < j && arr[j] > key) {
+                j--;
+            }
+            arr[emptyIndex] = arr[j];
+            emptyIndex = j;
+
+            while (i < j && arr[i] < key) {
+                i++;
+            }
+            arr[emptyIndex] = arr[i];
+            emptyIndex = i;
+
+        }
+
+        arr[emptyIndex] = key;
+        count++;
+        System.out.println("count:"+count);
+        quickSort2(arr, left+1, right);
+        quickSort2(arr, left, right-1);
+
+    }
+
+    private static void qs2(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int emptyIndex = left;
+        int i = left;
+        int j = right;
+        // 基准值
+        int key = arr[emptyIndex];
+        while (i < j) {
+            // 从右边开始找，找到小于基准值的下标
+            while (i < j && arr[j] > key) {
+                j--;
+            }
+            if (i < j) {
+                arr[emptyIndex] = arr[j];
+                emptyIndex = j;
+            }
+
+            // 和上面相反
+            while (i < j && arr[i] < key) {
+                i++;
+            }
+            if (i < j) {
+                arr[emptyIndex] = arr[i];
+                emptyIndex = i;
+            }
+        }
+        arr[emptyIndex] = key;
+        count++;
+        System.out.println("count:"+count);
+        qs2(arr,left,i-1);
+        qs2(arr,i+1,right);
+    }
+
 
     private static void quickSort(int[] arr, int left, int right) {
         if (left >= right) {
