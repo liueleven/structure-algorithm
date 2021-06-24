@@ -21,11 +21,40 @@ public class QuickSort {
 //        int[] arr = {9,3,2,1,10,6,8,7,5,4};
         int[] arr = {1,88,23,4,52,3,7};
         System.out.println(Arrays.toString(arr));
-        quickSort2(arr, 0, arr.length - 1);
+        quickSort3(arr, 0, arr.length - 1);
+//        quickSort2(arr, 0, arr.length - 1);
 //        qs2(arr,0,arr.length-1);
 //        qs(arr,0,arr.length-1);
 //        quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
+    }
+
+    private static void quickSort3(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int emptyIndex = left;
+        int i = left,j = right;
+        int key = arr[emptyIndex];
+        while (i <j ) {
+
+            while (i < j && arr[j] > key) {
+                j--;
+            }
+            arr[emptyIndex] = arr[j];
+            emptyIndex = j;
+
+            while (i < j && arr[i] < key) {
+                i++;
+            }
+            arr[emptyIndex] = arr[i];
+            emptyIndex = i;
+        }
+        count++;
+        System.out.println(count);
+        arr[emptyIndex] = key;
+        quickSort3(arr,left,i-1);
+        quickSort3(arr,i+1,right);
     }
 
     /**
