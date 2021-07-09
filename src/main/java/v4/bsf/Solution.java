@@ -40,10 +40,15 @@ public class Solution {
     public static void main(String[] args) {
         List<List<String>> target = new ArrayList<>();
 //        // [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
-        target.add(Arrays.asList("MUC", "LHR"));
-        target.add(Arrays.asList("JFK", "MUC"));
-        target.add(Arrays.asList("SFO", "SJC"));
-        target.add(Arrays.asList("LHR", "SFO"));
+//        target.add(Arrays.asList("MUC", "LHR"));
+//        target.add(Arrays.asList("JFK", "MUC"));
+//        target.add(Arrays.asList("SFO", "SJC"));
+//        target.add(Arrays.asList("LHR", "SFO"));
+
+//        [["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
+        target.add(Arrays.asList("JFK","KUL"));
+        target.add(Arrays.asList("JFK","NRT"));
+        target.add(Arrays.asList("NRT","JFK"));
 
         Solution solution2 = new Solution();
         List<String> itinerary = solution2.findItinerary(target);
@@ -76,9 +81,11 @@ public class Solution {
         PriorityQueue<String> destinations = map.get(from);
         while(destinations != null && !destinations.isEmpty()) {
             String to = destinations.remove();
+            results.add(to);
             System.out.println("下个国家：" + to);
             dsf(to);
         }
-        results.addFirst(from);
+//        System.out.println(from);
+//        results.addFirst(from);
     }
 }
