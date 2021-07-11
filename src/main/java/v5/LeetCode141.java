@@ -72,12 +72,12 @@ public class LeetCode141 {
         if (node == null) {
             return false;
         }
-        Map<Integer,Integer> map = new HashMap<>();
+        Map<ListNode,Integer> map = new HashMap<>();
         while (node != null) {
-            if (map.containsKey(node.val)) {
+            if (map.containsKey(node)) {
                 return true;
             }
-            map.put(node.val, node.val);
+            map.put(node, node.val);
             node = node.next;
         }
         return false;
@@ -98,7 +98,7 @@ public class LeetCode141 {
         while (q != null  && q.next != null) {
 
             System.out.println("s:"+s.val+", q:"+q.val);
-            if (q.val == s.val) {
+            if (q == s) {
                 return true;
             }
             q = q.next.next;
