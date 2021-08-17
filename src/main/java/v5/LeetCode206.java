@@ -2,6 +2,7 @@ package v5;
 
 import org.junit.Assert;
 import org.junit.Test;
+import v4.list.List;
 
 /**
  * @description: https://leetcode-cn.com/problems/reverse-linked-list/ 反转链表
@@ -36,6 +37,19 @@ public class LeetCode206 {
         r = reverseList(n5);
         Assert.assertEquals(r.val, 1);
         Assert.assertEquals(r.next.val, 2);
+    }
+
+    @Test
+    public void test3_true() {
+        ListNode n1 = new ListNode(1, null);
+        ListNode n2 = new ListNode(2, n1);
+        ListNode n3 = new ListNode(3, n2);
+        ListNode n4 = new ListNode(4, n3);
+        ListNode n5 = new ListNode(5, n4);
+
+        reverseList3(n5);
+        Assert.assertEquals(n5.val, 1);
+        Assert.assertEquals(n5.next.val, 2);
     }
 
 
@@ -82,6 +96,26 @@ public class LeetCode206 {
 
         return tailNode;
     }
+
+    /**
+     * 反正链表
+     * @param head
+     */
+    public void reverseList3(ListNode head) {
+        // 也可以使用递归反转一个链表
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        head.next = pre;
+    }
+
+
 
 
 

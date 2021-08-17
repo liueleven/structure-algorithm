@@ -3,6 +3,8 @@ package v5;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.LinkedHashMap;
+
 /**
  * @description: https://leetcode-cn.com/problems/reverse-linked-list-ii/ 反转链表 2
  *
@@ -10,7 +12,6 @@ import org.junit.Test;
  * @author: liuziqing
  */
 public class LeetCode92 {
-
 
 
     @Test
@@ -174,19 +175,15 @@ public class LeetCode92 {
     }
 
     public ListNode reverseBetween4(ListNode head, int left, int right) {
-        // 设置 dummyNode 是这一类问题的一般做法
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
         ListNode pre = dummyNode;
         for (int i = 0; i < left - 1; i++) {
             pre = pre.next;
         }
-        // cur是要反转的头结点
         ListNode cur = pre.next;
         ListNode next;
         for (int i = 0; i < right - left; i++) {
-            // 开始反转操作，pre 原始数据，cur和next都是用来暂存临时节点，cur当前节点数据，next下一个要反转的节点数据
-            // 不好理解需要画个图
             next = cur.next;
             cur.next = next.next;
             next.next = pre.next;
