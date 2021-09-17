@@ -3,8 +3,7 @@ package v5;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @description: N 叉树的前序遍历
@@ -49,6 +48,66 @@ public class LeetCode589 {
         Assert.assertTrue(integers.get(3) == 6);
         Assert.assertTrue(integers.get(4) == 2);
         Assert.assertTrue(integers.get(5) == 4);
+    }
+
+    @Test
+    public void test_preorderWithIterator_true() {
+        // input: root = [1,null,3,2,4,null,5,6]
+        // result: [1,3,5,6,2,4]
+        Node node = new Node(1);
+        List<Node> children1 = new ArrayList<>();
+        List<Node> children3 = new ArrayList<>();
+        Node node3 = new Node(3);
+        Node node2 = new Node(2);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+        Node node6 = new Node(6);
+
+        children1.add(node3);
+        children1.add(node2);
+        children1.add(node4);
+
+        children3.add(node5);
+        children3.add(node6);
+
+        node.children = children1;
+        node3.children = children3;
+
+
+
+        List<Integer> integers = preorderWithIterator(node);
+        Assert.assertTrue(integers.get(0) == 1);
+        Assert.assertTrue(integers.get(1) == 3);
+        Assert.assertTrue(integers.get(2) == 5);
+        Assert.assertTrue(integers.get(3) == 6);
+        Assert.assertTrue(integers.get(4) == 2);
+        Assert.assertTrue(integers.get(5) == 4);
+    }
+
+    /**
+     * 迭代法
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderWithIterator(Node root) {
+
+        LinkedList<Node> stock = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+        stock.add(root);
+        while (!stock.isEmpty()) {
+            Node node = stock.pollLast();
+            if (node != null) {
+                result.add(node.val);
+                if (node.children != null) {
+                    Collections.reverse(node.children);
+                    for (Node child : node.children) {
+                        stock.add(child);
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     public List<Integer> preorder(Node root) {
