@@ -87,7 +87,7 @@ public class Solution {
      * @param nums      数组
      * @param i         当前树的高度
      * @param sum       走过的节点和值
-     * @param target    目标值
+     * @param target    目标值F
      */
     public void dsf(int[] nums, int i, int sum, int target) {
 
